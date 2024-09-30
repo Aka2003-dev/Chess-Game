@@ -115,6 +115,11 @@ socket.on("move",(move)=>{
     renderBoard();
 });
 
+socket.on("boardState", (fen) => {
+    chess.load(fen);  // Load the FEN string to reset the board
+    renderBoard();     // Re-render the board with the updated state
+});
+
 //Listen for gameOver event
 socket.on("gameOver", ({ winner }) => {
     if (winner) {

@@ -45,6 +45,11 @@ io.on("connection",function(uniquesocket){
         }else if(uniquesocket.id===players.black){
             delete players.black;
         }
+
+        // Reset the game state when a player disconnects
+        chess.reset(); // Resets the chessboard to the starting position
+        io.emit("boardState", chess.fen()); // Emit new board state to reset the board for remaining players
+        console.log("Game reset after player disconnect");
         
     })
 
